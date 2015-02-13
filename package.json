@@ -1,0 +1,8 @@
+{
+  "name": "HacklabMikkeliIrcBot",
+  "description": "irc bot for Hacklab Mikkeli",
+  "version": "0.0.1",
+  "dependencies": {
+    "irc": "*"
+  }
+}
