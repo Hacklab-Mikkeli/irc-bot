@@ -12,7 +12,7 @@ var config = {
     /*
      * Channels the bot should join
      */
-    channel: '#supertestikananava',
+    channel: '#hacklabmikkeli',
 }
 
 module.exports = config;
