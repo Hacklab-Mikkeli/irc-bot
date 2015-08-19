@@ -6,10 +6,15 @@ function Bot(server, nick, channel) {
   this.channel = channel; // TODO: support multiple channels
   this.messageFunctions = {};
   this.pmFunctions = {};
+  this.onEachMsg = [];
   this.client = new irc.Client(this.server, this.nick, {
     autoConnect: false
   });
 }
+
+Bot.prototype.onEachMessage = function(callback) {
+  this.onEachMsg.push(callback);
+};
 
 Bot.prototype.message = function(msg, callback) {
   this.messageFunctions[msg] = callback;
@@ -39,6 +44,9 @@ Bot.prototype.start = function() {
   this.client.addListener('message#', function (from, to, text, rawMessage) {
     if(_this.messageFunctions.hasOwnProperty(text)){
       _this.messageFunctions[text](from, to, text, rawMessage);
+    }
+    for(var i = 0, j = _this.onEachMsg.length; i < j; i++){
+      _this.onEachMsg[i](from, to, text, rawMessage);
     }
   });
   this.client.addListener('pm', function (from, text, rawMessage) {
