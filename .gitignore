@@ -4,3 +4,4 @@
 node_modules
 .ntvs_analysis.dat
 modules/mailchimp/config.js
+modules/reddit/config.js
